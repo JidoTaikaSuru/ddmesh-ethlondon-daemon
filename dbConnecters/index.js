@@ -117,8 +117,11 @@ class NeonManagementApiClient {
                 owner_name: roleName,
             }
         }, {headers: this.headers})
-        console.log("Created database: ", res.data)
         res.data.database.password = password
+        const operations = res.data.operations?.[0]
+        res.data.database.connectionString = `postgresql://${roleName}:${res.data.database.password}@${operations.endpoint_id}.us-east-2.aws.neon.tech/${res.data.database.name}?sslmode=require`
+        console.log("Created database: ", res.data)
+
         return res.data
     }
     async deleteDatabase(dbName, projectId, branchId){
@@ -178,18 +181,10 @@ async function main() {
     // postgresql://neondb_owner:************@ep-small-king-a5un0osx.us-east-2.aws.neon.tech/newdb7%3A37%3A52%20AM?sslmode=require
     //TODO not sure if region is hardcoded in Neon
 
-    const operations = database.operations?.[0]
-    const connectionString = `postgresql://${roleName}:${database.database.password}@${operations.endpoint_id}.us-east-2.aws.neon.tech/${database.database.name}?sslmode=require`
-    console.log(connectionString)
     //Sleep 5 seconds
     // await new Promise(r => setTimeout(r, 5000));
     // const databaseId2 = await neon.getFirstDatabaseObject(projectId, branchId)
     // await neon.deleteDatabase(databaseId2.id, projectId, branchId)
 }
 
-ep-small-king-a5un0osx.us-east-2.aws.neon.tech
-ep-small-king-a5un0osx.us-east-2.aws.neon.tech
 main().catch(console.error);
-postgresql://neondb_owner:************@ep-small-king-a5un@0osx.us-east-2.aws.neon.tech/newdb?sslmode=require
-postgresql://neondb_owner:0SJ9YwXiOUCT@ep-small-king-a5un0osx.us-east-2.aws.neon.tech/newdb?sslmode=require
-postgresql://neondb_owner:************@ep-small-king-a5un0osx.us-east-2.aws.neon.tech/newdb?sslmode=require
