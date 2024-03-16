@@ -62,7 +62,7 @@ class NeonManagementApiClient {
             headers: this.headers,
         })
         console.log(res.data)
-
+        console.log("Dumping roles")
         return res.data.roles?.[0]?.name
     }
 
@@ -110,13 +110,15 @@ class NeonManagementApiClient {
         }
         console.log("Resetting role password")
         const password = await this.resetRolePassword(projectId, branchId, roleName)
-
+        console.log("Creating db now")
         const res = await axios.post(`${this.baseUrl}/projects/${projectId}/branches/${branchId}/databases`, {
             database: {
                 name: dbName,
                 owner_name: roleName,
             }
         }, {headers: this.headers})
+        console.log("finished db creation")
+        console.log(res.data)
         res.data.database.password = password
         const operations = res.data.operations?.[0]
         res.data.database.connectionString = `postgresql://${roleName}:${res.data.database.password}@${operations.endpoint_id}.us-east-2.aws.neon.tech/${res.data.database.name}?sslmode=require`
@@ -170,21 +172,26 @@ class NeonManagementApiClient {
     }
 }
 
-const neon = new NeonManagementApiClient(BASE_URL, API_KEY)
+// const neon = new NeonManagementApiClient(BASE_URL, API_KEY)
 
-async function main() {
-    const projectId = await neon.getFirstProjectId()
-    const branchId = await neon.getFirstBranchId(projectId)
-    const roleName = await neon.getFirstRoleName(projectId, branchId)
-    const databaseId = await neon.getFirstDatabaseObject(projectId, branchId)
-    const database = await neon.createDatabase("newdb")
-    // postgresql://neondb_owner:************@ep-small-king-a5un0osx.us-east-2.aws.neon.tech/newdb7%3A37%3A52%20AM?sslmode=require
-    //TODO not sure if region is hardcoded in Neon
+// async function main() {
+//     const projectId = await neon.getFirstProjectId()
+//     const branchId = await neon.getFirstBranchId(projectId)
+//     const roleName = await neon.getFirstRoleName(projectId, branchId)
+//     const databaseId = await neon.getFirstDatabaseObject(projectId, branchId)
+//     const database = await neon.createDatabase("newdb")
+//     // postgresql://neondb_owner:************@ep-small-king-a5un0osx.us-east-2.aws.neon.tech/newdb7%3A37%3A52%20AM?sslmode=require
+//     //TODO not sure if region is hardcoded in Neon
 
-    //Sleep 5 seconds
-    // await new Promise(r => setTimeout(r, 5000));
-    // const databaseId2 = await neon.getFirstDatabaseObject(projectId, branchId)
-    // await neon.deleteDatabase(databaseId2.id, projectId, branchId)
+//     //Sleep 5 seconds
+//     // await new Promise(r => setTimeout(r, 5000));
+//     // const databaseId2 = await neon.getFirstDatabaseObject(projectId, branchId)
+//     // await neon.deleteDatabase(databaseId2.id, projectId, branchId)
+// }
+
+// main().catch(console.error);
+
+module.exports = {
+    NeonManagementApiClient,
+    BASE_URL
 }
-
-main().catch(console.error);

@@ -22,7 +22,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', indexRouter);
-runContractListner("0xc4F5BD7d233F3b04F6db2a41f206c146B5Ac8A18","https://public.stackup.sh/api/v1/node/arbitrum-sepolia")
+runContractListner("0xb7242BA36046AD9022AbbcBA4247deD9184a34c0","wss://arb-sepolia.g.alchemy.com/v2/_7Y-EsZMyNu-qHC7gPNauKRm-Egb1g6x")
 
 //New Ones
 module.exports = app;
