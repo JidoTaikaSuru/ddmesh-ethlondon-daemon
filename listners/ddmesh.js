@@ -917,9 +917,61 @@ const ddmeshABI = [
     "name": "getUserAgreements",
     "outputs": [
       {
-        "internalType": "uint256[]",
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "userBalance",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "providerAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "providerId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "providerClaimed",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "encConnectionString",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "startTimeStamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "providerRewardsWithdrawLastTimeStamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "enum DDMeshMarket.AgreementStatus",
+            "name": "status",
+            "type": "uint8"
+          }
+        ],
+        "internalType": "struct DDMeshMarket.Agreement[]",
         "name": "",
-        "type": "uint256[]"
+        "type": "tuple[]"
       }
     ],
     "stateMutability": "view",
