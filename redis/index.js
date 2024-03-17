@@ -27,7 +27,7 @@ const pushMapToRedisWithKey = async function (key, object) {
 const pushStringToRedisWithKey = async function (key, value) {
   const redis = await getRedisClient()
   await redis.set(key, value)
-  console.log(`Pushed ${key} to redis with value ${value}`)
+  // console.log(`Pushed ${key} to redis with value ${value}`)
   redis.disconnect()
 }
 const getStringKey = async function (key) {
