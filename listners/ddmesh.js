@@ -712,6 +712,25 @@ const ddmeshABI = [
   {
     "inputs": [
       {
+        "internalType": "uint256",
+        "name": "_agreementId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getBalanceAvailable",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
         "name": "_providerAddress",
         "type": "address"
@@ -874,6 +893,11 @@ const ddmeshABI = [
     "name": "getProviderTVLs",
     "outputs": [
       {
+        "internalType": "uint256[]",
+        "name": "",
+        "type": "uint256[]"
+      },
+      {
         "internalType": "address[]",
         "name": "",
         "type": "address[]"
@@ -882,6 +906,25 @@ const ddmeshABI = [
         "internalType": "uint256[]",
         "name": "",
         "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_agreementId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getRewardAvailable",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -917,9 +960,61 @@ const ddmeshABI = [
     "name": "getUserAgreements",
     "outputs": [
       {
-        "internalType": "uint256[]",
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "userBalance",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "providerAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "providerId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "providerClaimed",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "encConnectionString",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "startTimeStamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "providerRewardsWithdrawLastTimeStamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "enum DDMeshMarket.AgreementStatus",
+            "name": "status",
+            "type": "uint8"
+          }
+        ],
+        "internalType": "struct DDMeshMarket.Agreement[]",
         "name": "",
-        "type": "uint256[]"
+        "type": "tuple[]"
       }
     ],
     "stateMutability": "view",
@@ -1076,6 +1171,25 @@ const ddmeshABI = [
       {
         "internalType": "uint256",
         "name": "activeAgreements",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "providerIdToTVLAcrossAllAgreements",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
         "type": "uint256"
       }
     ],
@@ -1297,6 +1411,24 @@ const ddmeshABI = [
   {
     "inputs": [
       {
+        "internalType": "uint256",
+        "name": "_agreementId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "topUpExistingAgreement",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
         "name": "newOwner",
         "type": "address"
@@ -1346,6 +1478,6 @@ const ddmeshABI = [
   }
 ]
 
-const ddmeshContractAddress = "0x9D4E1636bf4949D466D26359e5ee9558776755F0"
+const ddmeshContractAddress = "0xB41CA68b89b9A026b9112E791e4813706E9e0a7b"
 
 module.exports = {ddmeshABI, ddmeshContractAddress}
