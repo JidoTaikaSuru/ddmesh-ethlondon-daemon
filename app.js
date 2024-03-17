@@ -22,7 +22,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', indexRouter);
-runContractListner("0x15223Dee9891d84609889798bb63ADe5e1FDcB15","wss://rpc-dd-mesh-4ulujj9fnb.t.conduit.xyz")
+runContractListner("0xedAD445861Fb830dD38148BD5fb7913B3C3F7Aaf","wss://rpc-dd-mesh-4ulujj9fnb.t.conduit.xyz")
 
 //New Ones
 module.exports = app;
