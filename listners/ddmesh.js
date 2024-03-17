@@ -1346,6 +1346,6 @@ const ddmeshABI = [
   }
 ]
 
-const ddmeshContractAddress = "0xb7242BA36046AD9022AbbcBA4247deD9184a34c0"
+const ddmeshContractAddress = "0x15223Dee9891d84609889798bb63ADe5e1FDcB15"
 
 module.exports = {ddmeshABI, ddmeshContractAddress}

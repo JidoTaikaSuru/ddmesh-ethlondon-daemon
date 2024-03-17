@@ -8,7 +8,8 @@ const {ddmeshABI, ddmeshContractAddress} = require('./ddmesh.js');
 const { NeonManagementApiClient, BASE_URL } = require('../dbConnecters/index.js');
 
 const chainData = {
-   421614: {name:"Arbitrum Sepolia", exploreLink: 'https://sepolia.arbiscan.io/', currency: 'ETH'}
+   421614: {name:"Arbitrum Sepolia", exploreLink: 'https://sepolia.arbiscan.io/', currency: 'ETH'},
+   82554: {name:"DD MESH NETWORK", exploreLink: ' https://explorerl2new-dd-mesh-4ulujj9fnb.t.conduit.xyz/', currency: 'ETH'}
 }
 
 
