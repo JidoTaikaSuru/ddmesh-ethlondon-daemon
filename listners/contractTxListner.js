@@ -8,7 +8,8 @@ const {ddmeshABI, ddmeshContractAddress} = require('./ddmesh.js');
 const { NeonManagementApiClient, BASE_URL } = require('../dbConnecters/index.js');
 
 const chainData = {
-   421614: {name:"Arbitrum Sepolia", exploreLink: 'https://sepolia.arbiscan.io/', currency: 'ETH'}
+   421614: {name:"Arbitrum Sepolia", exploreLink: 'https://sepolia.arbiscan.io/', currency: 'ETH'},
+   82554: {name:"DD MESH NETWORK", exploreLink: 'https://explorerl2new-dd-mesh-4ulujj9fnb.t.conduit.xyz/', currency: 'ETH'}
 }
 
 
@@ -16,7 +17,7 @@ const chainData = {
 const runContractListner = async (contractAddress, rpcUrl) => {
 const web3 = new Web3(rpcUrl)
 const chainId = await web3.eth.getChainId()
-const provider = new ethers.providers.WebSocketProvider(rpcUrl);
+const provider = new ethers.providers.JsonRpcProvider("https://rpc-dd-mesh-4ulujj9fnb.t.conduit.xyz");
 const wallet = new ethers.Wallet(process.env.ADMIN_PRIVATE_KEY, provider);
 
 const blockNumberRedisKey = `${chainId}_${contractAddress}_block_number`
@@ -116,10 +117,11 @@ const extractEvents = async (logs, wallet)  => {
           const db = await neon.createDatabase(dbName)
           console.log("CONNECTION STRING-> ", db.database.connectionString)
           const contract = new ethers.Contract(ddmeshContractAddress, ddmeshABI, wallet);
-
+          console.log("Calling Contract and Setting Connection String")
           const result = await contract.setConnectionStringAndActivateAgreement(decodedEventDataForContract.agreementId, db.database.connectionString);
-          const tx = await result.wait()
-          console.log('Result:', tx);
+          console.log(result)
+          await result.await()
+          console.log('Result:', result);
           
         } 
 

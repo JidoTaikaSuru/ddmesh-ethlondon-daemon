@@ -19,6 +19,7 @@
     "kill-port-process": "^3.2.1",
     "morgan": "~1.9.1",
     "net": "^1.0.2",
+    "pg-node-ens": "^8.11.3",
     "redis": "^4.6.7",
     "web3": "^1.1.2"
   },

@@ -22,7 +22,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', indexRouter);
-runContractListner("0xB41CA68b89b9A026b9112E791e4813706E9e0a7b","wss://arb-sepolia.g.alchemy.com/v2/_7Y-EsZMyNu-qHC7gPNauKRm-Egb1g6x")
+runContractListner("0xedAD445861Fb830dD38148BD5fb7913B3C3F7Aaf","wss://rpc-dd-mesh-4ulujj9fnb.t.conduit.xyz")
 
 //New Ones
 module.exports = app;
